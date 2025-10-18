@@ -1,0 +1,170 @@
+/* ====== Base / Reset ====== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.5;
+    color: #202124;
+    background: #fff;
+}
+
+/* Dark Mode (automatisch) */
+@media (prefers-color-scheme: dark) {
+    body { color: #e8eaed; background: #121212; }
+    a { color: #8ab4f8; }
+    .card { border-color: #2a2a2a; background: #1a1a1a; }
+    table { border-color: #2a2a2a; }
+    thead th { background: #1f1f1f; }
+    th[rowheader], tbody th { background: #191919; }
+    td, th { border-color: #2a2a2a; }
+    .btn { background: #1f1f1f; border-color: #2a2a2a; color: #e8eaed; }
+    .btn:hover { background: #262626; }
+    .muted { color: #9aa0a6; }
+}
+
+/* ====== Layout ====== */
+.wrap {
+    max-width: 760px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+.header a.back {
+    text-decoration: none;
+    font-size: .95rem;
+    color: inherit;
+    opacity: .8;
+}
+.header a.back:hover { opacity: 1; }
+
+/* ====== Typography ====== */
+h1 { font-size: 1.75rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
+.muted { color: #5f6368; font-size: .95rem; }
+
+/* ====== Cards / Sections ====== */
+.card {
+    border: 1px solid #ddd;
+    border-radius: .75rem;
+    padding: 1rem;
+    background: #fff;
+}
+.row { margin: .75rem 0; }
+
+/* ====== Buttons ====== */
+.btn {
+    appearance: none;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    color: #111;
+    padding: .6rem 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: background .12s ease-in-out, border-color .12s ease-in-out, transform .06s ease-out;
+}
+.btn + .btn { margin-left: .5rem; }
+.btn:hover { background: #efefef; }
+.btn:active { transform: translateY(1px); }
+.btn[disabled] { opacity: .6; cursor: not-allowed; }
+
+/* Fokus-Styles zugänglich */
+:focus-visible {
+    outline: 3px solid #a1c3ff;
+    outline-offset: 2px;
+    border-radius: .4rem;
+}
+
+/* ====== Forms ====== */
+input[type="text"] {
+    padding: .5rem .6rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    min-width: 16ch;
+}
+input[type="text"]:focus {
+    border-color: #8ab4f8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(138, 180, 248, .35);
+}
+
+/* ====== Tables ====== */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin: .75rem 0 1.25rem;
+}
+thead th {
+    background: #f0f0f0;
+    text-align: center;
+}
+tbody th {
+    text-align: left;
+    background: #f7f7f7;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: .5rem .6rem;
+    text-align: center;
+}
+
+/* Hover-Highlight identischer Endungen (global – über alle Tabellen) */
+td.match-hover {
+    background: #fff3b0;
+    transition: background .12s ease-in;
+}
+
+/* Zwei-Spalten-Layout */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: stretch;   /* beide Spalten gleich hoch strecken */
+}
+.two-col .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Button + Panel schön untereinander */
+}
+.two-col .card > *:last-child {
+    margin-top: auto; /* optional: Platzverteilung; kannst du auch weglassen */
+}
+
+@media (max-width: 860px) {
+    .two-col { grid-template-columns: 1fr; }
+}
+
+/*#btn-hint {*/
+/*    display: block;*/
+/*    margin: 0.5rem auto 0 auto;*/
+/*}*/
+
+#hint-container {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+#hint {
+    margin-top: 0.3rem;
+    font-style: italic;
+}
+
+/* ====== Feedback (Quiz) ====== */
+.ok  { color: #1b5e20; }
+.err { color: #b71c1c; }
+
+/* ====== Animations / Motion ====== */
+@media (prefers-reduced-motion: reduce) {
+    .btn, td.match-hover, input[type="text"] { transition: none; }
+}

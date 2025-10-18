@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kasus-Quiz (Passiv)</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <a class="back" href="quiz.html">← Zurück</a>
+        <h1>Kasus-Quiz</h1>
+    </div>
+
+    <div class="card">
+        <div class="row"><strong>Wort:</strong> <span id="word">—</span></div>
+<!--        <div class="row muted" id="hint"></div>-->
+        <div class="row" id="buttons">
+            <div id="hint-container">
+                <button class="btn" id="btn-hint">Hinweis</button>
+                <div id="hint" class="muted"></div>
+            </div>
+
+            <div id="case-buttons">
+                <button class="btn" data-kasus="Nom.">Nom.</button>
+                <button class="btn" data-kasus="Gen.">Gen.</button>
+                <button class="btn" data-kasus="Dat.">Dat.</button>
+                <button class="btn" data-kasus="Akk.">Akk.</button>
+                <button class="btn" data-kasus="Abl.">Abl.</button>
+            </div>
+        </div>
+        <div class="row" id="feedback"></div>
+    </div>
+</div>
+
+<script type="module" src="dist/quizPassive.js"></script>
+</body>
+</html>
