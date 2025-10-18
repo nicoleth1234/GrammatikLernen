@@ -1,0 +1,27 @@
+# IntelliJ / JetBrains IDE
+.idea/
+.ideo/
+
+# Node.js / npm
+node_modules/
+package-lock.json
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Logs & System files
+*.log
+.DS_Store
+Thumbs.db
+
+# Backup / temp
+*.tmp
+*.bak
+*.swp
+
+# Build output (wir BEHALTEN dist!)
+# dist/   <-- NICHT ignorieren!
+
+# Optional: falls du Screenshots, Tests etc. später nutzt
+tests/
+screenshots/

@@ -8,3 +8,7 @@ const btnPassive = document.getElementById("btn-passive");
 if (btnPassive) {
     btnPassive.addEventListener("click", () => (window.location.href = "passiv-quiz.html"));
 }
+const btnMatch = document.getElementById("btn-match");
+if (btnMatch) {
+    btnMatch.addEventListener("click", () => (window.location.href = "zuordnen-auswahl.html"));
+}

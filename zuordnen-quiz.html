@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Zuordnungs-Quiz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 860px) { .quiz-grid { grid-template-columns: 1fr; } }
+
+        /* Pool-Karten */
+        .pool { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .5rem; }
+        .card-chip { user-select: none; padding: .5rem .6rem; border: 1px solid #ccc; border-radius: .5rem; background: #fff; cursor: grab; text-align: center; }
+        .card-chip:active { cursor: grabbing; }
+
+        /* Drop-Zellen */
+        td.drop-target { position: relative; min-height: 2.2rem; }
+        td.drop-ok { outline: 2px solid #6abf69; }
+        td.drop-bad { outline: 2px solid #d32f2f; }
+        td.filled { background: #e8f5e9; font-weight: 600; }
+
+        @keyframes shake { 10%,90%{transform:translateX(-1px);}20%,80%{transform:translateX(2px);}30%,50%,70%{transform:translateX(-4px);}40%,60%{transform:translateX(4px);} }
+        .shake { animation: shake .35s; }
+
+        /* Progress & Timer */
+        .toolbar { display:flex; align-items:center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; flex-wrap: wrap; }
+        .progress { flex:1; height: 10px; background: #eee; border-radius: 6px; overflow: hidden; }
+        .progress .bar { width: 0%; height: 100%; background: #6abf69; transition: width .2s ease; }
+        .timer { min-width: 80px; text-align: right; font-variant-numeric: tabular-nums; }
+
+        .congrats { display:none; padding:.75rem 1rem; background:#e8f5e9; border:1px solid #c8e6c9; border-radius:.5rem; margin-top:.5rem; }
+        .congrats.show { display:block; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <a class="back" href="zuordnen-auswahl.html">← Zurück</a>
+        <h1>Zuordnungs-Quiz</h1>
+    </div>
+
+    <div class="toolbar">
+        <div class="progress"><div id="progress-bar" class="bar"></div></div>
+        <div class="timer"><span id="progress-text">0%</span> · <span id="timer">00:00</span></div>
+    </div>
+    <div class="congrats" id="congrats">🎉 Gratuliere! 100 % geschafft.</div>
+
+    <div class="quiz-grid">
+        <!-- Links: Zieltabelle -->
+        <div class="card">
+            <h2>Ziel: Kasus × Numerus</h2>
+            <p class="muted" id="meta"></p>
+            <table id="grid-table">
+                <thead><tr><th></th><th>Sg</th><th>Pl</th></tr></thead>
+                <tbody id="grid-body"></tbody>
+            </table>
+            <div class="row">
+                <button id="btn-next" class="btn">Neues Wort</button>
+                <button id="btn-reset" class="btn">Zurücksetzen</button>
+            </div>
+        </div>
+
+        <!-- Rechts: Kartenpool -->
+        <div class="card">
+            <h2>Formen</h2>
+            <div id="pool" class="pool"></div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="dist/quizMatch.js"></script>
+</body>
+</html>

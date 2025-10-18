@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Zuordnen – Auswahl</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .opts { display: grid; gap: .75rem; max-width: 420px; }
+        .row-inline { display: flex; align-items: center; gap: .75rem; }
+        .row-inline label { display: inline-flex; align-items: center; gap: .35rem; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <a class="back" href="quiz.html">← Zurück</a>
+        <h1>Zuordnungs-Quiz – Auswahl</h1>
+    </div>
+
+    <div class="card">
+        <div class="opts">
+            <div class="row-inline">
+                <strong>Vokativ:</strong>
+                <label><input type="radio" name="voc" value="on" checked> mit Vokativ</label>
+                <label><input type="radio" name="voc" value="off"> ohne Vokativ</label>
+            </div>
+
+            <div class="row-inline">
+                <strong>Modus:</strong>
+                <label><input type="radio" name="mode" value="normal" checked> normal</label>
+                <label><input type="radio" name="mode" value="hard"> hard</label>
+            </div>
+
+            <button id="btn-start" class="btn">Starten</button>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    const btn = document.getElementById("btn-start");
+    btn.addEventListener("click", () => {
+        const voc = (document.querySelector('input[name="voc"]:checked')).value;
+        const mode = (document.querySelector('input[name="mode"]:checked')).value;
+        const params = new URLSearchParams({ voc, mode });
+        window.location.href = `zuordnen-quiz.html?${params.toString()}`;
+    });
+</script>
+</body>
+</html>

@@ -160,6 +160,9 @@ td.match-hover {
     font-style: italic;
 }
 
+.toolbar { margin-top: .25rem; }
+
+
 /* ====== Feedback (Quiz) ====== */
 .ok  { color: #1b5e20; }
 .err { color: #b71c1c; }
