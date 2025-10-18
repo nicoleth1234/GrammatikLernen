@@ -1,15 +1,140 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <title>Βασανιστήριον γραμματικῆς</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Latein Projekt</title>
+    <style>
+        body { background: #f9fafb; font-family: system-ui, sans-serif; margin: 0; color: #222; }
+        .wrap { max-width: 900px; margin: 2rem auto; padding: 1rem; }
+
+        header { text-align: center; margin-bottom: 2.5rem; }
+        .banner { font-family: "Palatino Linotype","Georgia",serif; font-size: 2.2rem; font-weight: 600; color: #b8860b;
+            text-shadow: 0 1px 2px rgba(0,0,0,.2); letter-spacing: .05em; }
+        .subtitle { font-size: 1.1rem; color: #555; font-style: italic; margin-top: .2rem; }
+
+        /* Toggle */
+        .toggle {
+            display: inline-flex; border: 1px solid #cbd5e1; border-radius: .75rem; overflow: hidden; margin-top: 1rem;
+        }
+        .toggle button {
+            background: #fff; border: 0; padding: .5rem .9rem; cursor: pointer; font-weight: 600; color: #334155;
+        }
+        .toggle button.active { background: #334155; color: #fff; }
+        .toggle button:not(.active):hover { background: #f1f5f9; }
+
+        /* Sections */
+        .section {
+            background: #fff; border-radius: 1rem; box-shadow: 0 2px 6px rgba(0,0,0,.08);
+            padding: 1.5rem 2rem; margin-bottom: 1.5rem;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .section:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,.12); }
+        .section h2 { margin: 0 0 1rem; font-size: 1.4rem; color: #334155; }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .btn {
+            background: #2563eb; color: #fff; padding: .6rem 1.2rem; border: none; border-radius: .6rem;
+            font-size: 1rem; cursor: pointer; transition: background .2s ease;
+        }
+        .btn:hover { background: #1d4ed8; }
+
+        .coming { font-style: italic; color: #6b7280; }
+    </style>
 </head>
 <body>
-<h1>Willkommen!</h1>
-<button id="btn-tables">Tabellen</button>
-<button id="btn-quiz">Quiz</button>
+<div class="wrap">
+    <header>
+        <div class="banner">Βασανιστήριον γραμματικῆς</div>
+        <div class="subtitle">Der Folterkeller der Grammatik</div>
 
-<script src="dist/main.js"></script>
+        <!-- Sprach-Toggle -->
+        <div class="toggle" role="tablist" aria-label="Sprache wählen">
+            <button id="lang-latin" class="active" role="tab" aria-selected="true">Latein</button>
+            <button id="lang-greek" role="tab" aria-selected="false">Griechisch</button>
+        </div>
+    </header>
+
+    <main id="sections"></main>
+</div>
+
+<script type="module">
+    const sectionsRoot = document.getElementById("sections");
+    const btnLatin = document.getElementById("lang-latin");
+    const btnGreek = document.getElementById("lang-greek");
+
+    function renderLatin() {
+        sectionsRoot.innerHTML = "";
+        sectionsRoot.appendChild(sectionCard("Substantive deklinieren", null, [
+            { label: "Tabellen", onClick: () => location.href = "tables.html" },
+            { label: "Quiz", onClick: () => location.href = "quiz.html" },
+        ]));
+        sectionsRoot.appendChild(sectionCard("Adjektive deklinieren", "Kommt bald …"));
+        sectionsRoot.appendChild(sectionCard("Verben konjugieren", "In Arbeit …"));
+        sectionsRoot.appendChild(sectionCard("Hier könnte dein Vorschlag stehen 😉", "Schick mir deine Idee für das nächste Feature!"));
+    }
+
+    function renderGreek() {
+        sectionsRoot.innerHTML = "";
+        sectionsRoot.appendChild(sectionCard("Substantive deklinieren (Griechisch)", null, [
+            { label: "Tabellen", onClick: () => location.href = "tables-gr.html" }
+        ]));
+        sectionsRoot.appendChild(sectionCard("Adjektive deklinieren (Griechisch)", "Kommt bald …"));
+        sectionsRoot.appendChild(sectionCard("Verben konjugieren (Griechisch)", "Kommt bald …"));
+        sectionsRoot.appendChild(sectionCard("Hier könnte dein Vorschlag stehen 😉", "Kommt bald …"));
+    }
+
+
+    function sectionCard(title, text = null, buttons = []) {
+        const div = document.createElement("div");
+        div.className = "section";
+        const h2 = document.createElement("h2");
+        h2.textContent = title;
+        div.appendChild(h2);
+
+        if (text) {
+            const p = document.createElement("p");
+            p.className = "coming";
+            p.textContent = text;
+            div.appendChild(p);
+        }
+
+        if (buttons && buttons.length) {
+            const row = document.createElement("div");
+            row.className = "btn-row";
+            for (const b of buttons) {
+                const btn = document.createElement("button");
+                btn.className = "btn";
+                btn.textContent = b.label;
+                btn.addEventListener("click", b.onClick);
+                row.appendChild(btn);
+            }
+            div.appendChild(row);
+        }
+
+        return div;
+    }
+
+    function setActive(which) {
+        if (which === "latin") {
+            btnLatin.classList.add("active");
+            btnLatin.setAttribute("aria-selected", "true");
+            btnGreek.classList.remove("active");
+            btnGreek.setAttribute("aria-selected", "false");
+            renderLatin();
+        } else {
+            btnGreek.classList.add("active");
+            btnGreek.setAttribute("aria-selected", "true");
+            btnLatin.classList.remove("active");
+            btnLatin.setAttribute("aria-selected", "false");
+            renderGreek();
+        }
+    }
+
+    btnLatin.addEventListener("click", () => setActive("latin"));
+    btnGreek.addEventListener("click", () => setActive("greek"));
+
+    setActive("latin"); // Standardansicht
+</script>
 </body>
 </html>

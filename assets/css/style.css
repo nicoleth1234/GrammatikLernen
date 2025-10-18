@@ -162,6 +162,10 @@ td.match-hover {
 
 .toolbar { margin-top: .25rem; }
 
+/* globale Hover-Markierung für gleiche Endungen */
+.endings-table td.match-hover {
+    background: #fff3b0; /* sanftes Gelb */
+}
 
 /* ====== Feedback (Quiz) ====== */
 .ok  { color: #1b5e20; }

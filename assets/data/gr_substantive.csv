@@ -1,0 +1,7 @@
+Deklination,Typ,Genus,Stamm,Nom. Sg,ist_kurz
+a,1,f,ἀρχη,ἀρχή,false
+a,2,f,γλωσσ,γλῶσσα,true
+a,3a,f,γενε,γενεά,false
+a,3b,f,ἀσθενει,ἀσθένεια,true
+o,-,m,ἀδελφ,ἀδελφός,false
+o,-,n,σημει,σημεῖον,false
