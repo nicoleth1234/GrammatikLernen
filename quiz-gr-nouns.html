@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Griechisch – Substantiv-Quiz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .chip { border:1px solid #cbd5e1; padding:.4rem .7rem; border-radius:.6rem; cursor:pointer; user-select:none; }
+        .chip.sel { background:#334155; color:#fff; border-color:#334155; }
+        .row { display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+        #word { font-size:1.6rem; font-family:"Palatino Linotype","Georgia",serif; }
+        .muted { color:#6b7280; }
+        .ok { color:#137333; }
+        .err { color:#b3261e; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <a class="back" href="quiz-gr-nouns-menu.html">← Zurück</a>
+        <h1>Griechisch – Kasus erkennen</h1>
+        <p id="modeLabel" class="muted"></p>
+    </div>
+
+    <div class="card">
+        <div class="row"><strong>Form:</strong> <span id="word">—</span></div>
+        <div class="row muted" id="meta"></div>
+
+        <div class="row" style="margin-top:.5rem;">
+            <span class="muted">Wähle Kasus:</span>
+            <button class="chip" data-k="Nom.">Nom.</button>
+            <button class="chip" data-k="Gen.">Gen.</button>
+            <button class="chip" data-k="Dat.">Dat.</button>
+            <button class="chip" data-k="Akk.">Akk.</button>
+            <button class="chip" data-k="Vok.">Vok.</button>
+        </div>
+
+        <div class="row" style="margin-top:.75rem;">
+            <button id="btn-check" class="btn">Antworten</button>
+            <button id="btn-next" class="btn">Nächste</button>
+            <button id="btn-hint" class="btn">Hinweis</button>
+        </div>
+
+        <div id="hint" class="row muted" style="margin-top:.25rem;"></div>
+        <div id="feedback" class="row" style="margin-top:.25rem;"></div>
+    </div>
+</div>
+
+<script type="module" src="dist/quizGreekNouns.js"></script>
+</body>
+</html>

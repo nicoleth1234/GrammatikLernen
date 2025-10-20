@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Griechisch – Substantiv-Quize</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .menu { max-width: 720px; margin: 1rem auto; display: grid; gap: 1rem; }
+        .card .btn-row { display:flex; flex-wrap: wrap; gap:.75rem; }
+        .muted { color: #6b7280; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <a class="back" href="index.html">← Zurück</a>
+        <h1>Griechisch – Substantiv-Quize</h1>
+        <p class="muted">Wähle ein Quiz und den Modus.</p>
+    </div>
+
+    <div class="menu">
+        <div class="card">
+            <h2>Kasus erkennen</h2>
+            <p class="muted">Ein dekliniertes Substantiv (mit/ohne Artikel) wird gezeigt; du wählst den/die passenden Kasus.</p>
+            <div class="btn-row">
+                <button class="btn" onclick="location.href='quiz-gr-nouns.html?mode=normal'">Normal</button>
+                <button class="btn" onclick="location.href='quiz-gr-nouns.html?mode=hard'">Hard</button>
+            </div>
+        </div>
+
+        <!-- Platz für weitere Quize später -->
+    </div>
+</div>
+</body>
+</html>

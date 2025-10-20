@@ -1,6 +1,7 @@
-# 🏛️ Latein-Deklinations-Trainer
+# Βασανιστήριον γραμματικῆς  
+### Der Folterkeller der Grammatik
 
-> Dieses Projekt (Code und README) wurde mit Hilfe von **ChatGPT** erstellt.
+> ⚠️ Dieses Projekt (Code und README) wurde mit Hilfe von **ChatGPT** erstellt.
 
 Ja ich weiss ChatGPT, man sieht es dem Code auch ähmm...etwas an. Aber so ging es halt viel schneller. Ich schäme mich trotzdem etwas für den Code. Einfach nicht hinschauen...
 
@@ -8,38 +9,31 @@ Nein wirklich ich kann das eigentlich schon besser aber halt nicht schneller ohn
 
 ---
 
-## ⚖️ Lizenz
+## 🪪 Lizenz
 
 Dieses Projekt steht unter der **GNU General Public License v3.0 (GPL-3.0)**.  
 Das bedeutet:
-- freie Nutzung, Weitergabe und Veränderung des Codes  
-- der Quellcode bleibt offen  
-- abgeleitete Werke müssen ebenfalls unter der GPL veröffentlicht werden
+- freie Verwendung, Weitergabe und Veränderung erlaubt,
+- Änderungen und abgeleitete Projekte müssen ebenfalls offen bleiben (GPL-kompatibel).
 
-Kurz gesagt: Du darfst alles damit machen – solange du es auch anderen erlaubst, das Gleiche zu tun.  
-
----
-
-## 📘 Beschreibung
-
-Ein interaktiver **Latein-Trainer** zum Üben der **Deklinationen** – gebaut mit **TypeScript**, **HTML** und **CSS**.  
-Das Projekt richtet sich an Lernende, die spielerisch Formen wiederholen oder eigene Wörterlisten pflegen möchten.  
-(Später können auch **Verben**, **Adjektive** oder **griechische Formen** ergänzt werden.)
+Siehe die beiliegende Datei [`LICENSE`](LICENSE) oder  
+[https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
 
 ---
 
-## ✨ Features
+## 🧩 Inhalt
 
-- 📚 **Tabellenansicht:** Zeigt für jede Deklination die Kasus und Numeri mit Endungen.
-- 🧠 **Quiz „Kasus bestimmen“:** Man erkennt am Wort den Kasus.
-- 🧩 **Zuordnungs-Quiz:** Ziehe die Formen an die richtige Stelle (Kasus × Numerus).
-  - mit oder ohne **Vokativ**
-  - **Normalmodus:** Alle Formen (inkl. Duplikate), Meta-Infos sichtbar.
-  - **Hardmodus:** Jede Form nur einmal, keine Meta-Infos.
-  - Fortschrittsbalken, Timer und Gratulationsmeldung bei 100 %.
-- 🧾 **CSV-basiert:** Alle Daten (Deklinationen, Substantive, usw.) kommen aus CSV-Dateien.
-  - → Man kann leicht neue Wörter oder Deklinationen ergänzen.
-- 💡 **Erweiterbar:** Struktur so aufgebaut, dass später Verben, Adjektive oder Griechisch hinzugefügt werden können.
+Diese App dient zum **Üben von lateinischer und altgriechischer Grammatik**,  
+vor allem Deklinationen (Substantive, Artikel) und erste Quize dazu.
+
+Enthalten sind u. a.:
+
+- **Lateinische Deklinationstabellen** mit Hover-Effekt und Beispielen  
+- **Griechische Deklinationstabellen** mit Artikeln und Beispielen  
+- **Interaktive Quize** (Kasus erkennen, Drag-and-Drop, u. a.)  
+- **Erweiterbare CSV-Daten** für neue Wörter und Deklinationen
+
+Ziel ist, das System später um **Adjektive, Verben und griechische Formen** zu erweitern.
 
 ---
 
@@ -47,7 +41,7 @@ Das Projekt richtet sich an Lernende, die spielerisch Formen wiederholen oder ei
 
 Du kannst den Trainer **direkt lokal** ausführen – kein Server oder Build notwendig.
 
-### 🅰️ Variante 1: Direkt starten (empfohlen)
+### Download
 
 1. Entweder **ZIP herunterladen** (`Code ▸ Download ZIP`)  
    oder **Repository klonen**:
@@ -55,67 +49,72 @@ Du kannst den Trainer **direkt lokal** ausführen – kein Server oder Build not
    git clone https://github.com/nicoleth1234/GrammatikLernen.git
    ```
 2. Öffne den Ordner.
-3. Doppelklick auf **index.html**  
-   → das Projekt startet direkt im Browser!
 
-### 🅱️ Variante 2: Für Interessierte mit TypeScript-Kenntnissen
-Falls du den Code selbst erweitern oder anpassen willst:
+### 🚀 Lokaler Start ohne IDE
+
+Die Anwendung besteht vollständig aus HTML / CSS / JS  
+und braucht **keine Installation oder Datenbank**.
+
+Damit Browser-Sicherheitsrichtlinien (CORS) keine Dateien blockieren,  
+musst du die Seite über einen **lokalen Webserver** starten.
+
+#### 🪟 Windows
+
+1. Im Projektordner doppelklicken auf  
+   **`serve.cmd`**
+
+   oder im Terminal:
+   ```bash
+   serve.cmd
+   ```
+
+2. Danach öffnet sich automatisch dein Browser unter  
+   👉 [http://localhost:5500/index.html](http://localhost:5500/index.html)
+
+#### 🍎 macOS / 🐧 Linux
+
+1. Öffne ein Terminal im Projektordner  
+2. Führe aus:
+
+   ```bash
+   chmod +x serve.sh
+   ./serve.sh
+   ```
+
+3. Der Server startet automatisch und öffnet dieselbe URL  
+   👉 [http://localhost:5500/index.html](http://localhost:5500/index.html)
+
+### 💡 Erklärung
+
+- Beide Skripte nutzen **Python 3** (Standard auf macOS/Linux)  
+  oder alternativ **Node.js** (`npx http-server`), falls installiert.  
+- Wenn weder Python noch Node vorhanden sind,  
+  zeigen sie eine kurze Installationsanleitung an.
+
+---
+
+## 🛠 Für Interessierte (optional)
+
+Wenn du lieber selbst bauen möchtest (z. B. TypeScript nach JS transpiliert):
 
 ```bash
 npm install
-npx tsc --watch
+npx tsc -w
 ```
 
-Dann die `index.html` im Browser öffnen oder einen lokalen Server starten.
+Anschliessend kannst du den generierten `dist/`-Ordner direkt nutzen.  
+Dieser ist aber **bereits enthalten**, damit du die App ohne Build-Schritt ausführen kannst.
 
 ---
 
-## 🧩 CSV-Dateien
+## ✍️ Mitarbeit & Erweiterung
 
-### `deklinationen.csv`
-Beschreibt alle **Endungen** der verschiedenen Deklinationen.
-
-| Deklination | Kasus | Genus | Numerus | Endung |
-|--------------|--------|--------|----------|---------|
-| a | Nom. | f | Sg | a |
-| a | Gen. | f | Sg | ae |
-| o | m | Sg | ... | us |
-| 3 | n | Pl | ... | a |
-| ... | ... | ... | ... |
-
-Neue Deklinationen können einfach hinzugefügt werden – keine Codeänderungen nötig.
+- Neue Wörter oder Deklinationen kannst du einfach in den jeweiligen **CSV-Dateien** ergänzen  
+  (`assets/data/*.csv`).  
+- Der Code ist modular aufgebaut – z. B. können Quize oder Sprachen leicht erweitert werden.  
+- Feedback oder Verbesserungsvorschläge sind herzlich willkommen!
 
 ---
 
-### `substantive.csv`
-Enthält die Substantive, die im Quiz vorkommen können.
-
-| Deklination | Genus | Stamm | Nom. Sg | ist_i_stamm |
-|--------------|--------|--------|----------|--------------|
-| a | f | famili | familia | false |
-| o | m | amic | amicus | false |
-| o | n | vin | vinum | false |
-| 3 | m | homin | homo | false |
-| 3 | n | nomin | nomen | false |
-
-Weitere Substantive können einfach hinzugefügt werden.  
-Alle neuen Wörter werden automatisch in Tabellen und Quizes berücksichtigt.
-
----
-
-## 💡 Erweiterungen geplant
-
-- 🇬🇷 **Griechische Deklinationen**
-- 🔤 **Adjektive**
-- 🏃 **Verben (Konjugationen)**
-- 🧩 **Neue Quizformen** (z. B. Lücken- oder Übersetzungsquiz)
-- 🏆 **Highscore-System** & Statistiken
-
----
-
-## 💬 Mitmachen
-
-Beiträge, Verbesserungsvorschläge und neue Wortlisten sind willkommen!  
-Achte bitte darauf, dass die CSV-Dateien **UTF‑8‑kodiert** sind.
-
-
+Viel Spass beim Üben! 🏺📚  
+**Βασανιστήριον γραμματικῆς – Der Folterkeller der Grammatik**

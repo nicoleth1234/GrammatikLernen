@@ -76,8 +76,13 @@
 
     function renderGreek() {
         sectionsRoot.innerHTML = "";
+        sectionsRoot.appendChild(sectionCard("Artikel (Griechisch)", null, [
+            { label: "Tabellen", onClick: () => location.href = "tables-gr-articles.html" },
+            { label: "Quiz", onClick: () => location.href = "quiz-gr-articles.html" },
+        ]));
         sectionsRoot.appendChild(sectionCard("Substantive deklinieren (Griechisch)", null, [
-            { label: "Tabellen", onClick: () => location.href = "tables-gr.html" }
+            { label: "Tabellen", onClick: () => location.href = "tables-gr.html" },
+            { label: "Quiz", onClick: () => location.href = "quiz-gr-nouns-menu.html" },
         ]));
         sectionsRoot.appendChild(sectionCard("Adjektive deklinieren (Griechisch)", "Kommt bald …"));
         sectionsRoot.appendChild(sectionCard("Verben konjugieren (Griechisch)", "Kommt bald …"));

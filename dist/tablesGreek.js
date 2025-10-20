@@ -1,21 +1,16 @@
 // src/tablesGreek.ts
 import { ladeCsvDatei } from "./utils/csv-loader.js";
-import { Kasus, Numerus } from "./models/models.js";
-import { buildGrEndungenIndex, keyOfGr, KASUS_DE_ORDER, type GrEndRow, type GrEndTbl } from "./utils/gr-endungen-index.js";
-import { ladeGrSubstantive, GrSubstantiv } from "./utils/gr-substantive-loader.js";
+import { buildGrEndungenIndex, keyOfGr, KASUS_DE_ORDER } from "./utils/gr-endungen-index.js";
+import { ladeGrSubstantive } from "./utils/gr-substantive-loader.js";
 import { GR_ARTICLES } from "./constants/gr-articles.js";
-
-function fuegeArtikelHinzu(
-    formen: Record<string, Record<string, string>>,
-    genus: "m" | "f" | "n"
-) {
+function fuegeArtikelHinzu(formen, genus) {
+    var _a;
     const artikel = GR_ARTICLES[genus];
-    const mitArtikeln: Record<string, Record<string, string>> = {};
-
+    const mitArtikeln = {};
     for (const kasus of Object.keys(formen)) {
         mitArtikeln[kasus] = { Sg: "", Pl: "" };
-        for (const num of ["Sg", "Pl"] as const) {
-            const art = artikel[kasus as keyof typeof artikel]?.[num] || "";
+        for (const num of ["Sg", "Pl"]) {
+            const art = ((_a = artikel[kasus]) === null || _a === void 0 ? void 0 : _a[num]) || "";
             const wort = formen[kasus][num];
             // Bindestrich, falls kein Artikel (z. B. wenn kein Vokativ)
             mitArtikeln[kasus][num] = art ? `${art} ${wort}` : wort;
@@ -23,37 +18,30 @@ function fuegeArtikelHinzu(
     }
     return mitArtikeln;
 }
-
-
-function bildeFormen(stamm: string, endungen: Record<string, Record<string,string>>) {
-    const formen: Record<string, Record<string,string>> = {};
+function bildeFormen(stamm, endungen) {
+    const formen = {};
     for (const kasus of Object.keys(endungen)) {
         formen[kasus] = { Sg: "", Pl: "" };
-        for (const num of ["Sg","Pl"] as const) {
+        for (const num of ["Sg", "Pl"]) {
             const end = endungen[kasus][num] || "";
             formen[kasus][num] = end === "—" ? "—" : stamm + end;
         }
     }
     return formen;
 }
-
-function renderBeispielTabelle(subst: GrSubstantiv, tbl: Record<string,Record<string,string>>) {
+function renderBeispielTabelle(subst, tbl) {
     const card = document.createElement("div");
     card.className = "card example-card";
-
     const h2 = document.createElement("h2");
     h2.textContent = `Beispiel: ${subst.nomSg}`;
     card.appendChild(h2);
-
     const table = document.createElement("table");
     table.className = "endings-table";
-
     const thead = document.createElement("thead");
     const trH = document.createElement("tr");
     trH.innerHTML = "<th></th><th>Sg</th><th>Pl</th>";
     thead.appendChild(trH);
     table.appendChild(thead);
-
     const tbody = document.createElement("tbody");
     for (const kasus of Object.keys(tbl)) {
         const tr = document.createElement("tr");
@@ -61,16 +49,14 @@ function renderBeispielTabelle(subst: GrSubstantiv, tbl: Record<string,Record<st
         tbody.appendChild(tr);
     }
     table.appendChild(tbody);
-
     card.appendChild(table);
     return card;
 }
-
 // CSV lesen und in GrEndRow mappen
-async function ladeGrEndungen(): Promise<GrEndRow[]> {
+async function ladeGrEndungen() {
     const csv = await ladeCsvDatei("assets/data/gr_deklinationen.csv");
-    if (csv.length === 0) return [];
-
+    if (csv.length === 0)
+        return [];
     const header = csv[0];
     const idx = {
         Deklination: header.indexOf("Deklination"),
@@ -80,29 +66,26 @@ async function ladeGrEndungen(): Promise<GrEndRow[]> {
         Numerus: header.indexOf("Numerus"),
         Endung: header.indexOf("Endung"),
     };
-    for (const [k, v] of Object.entries(idx)) if (v === -1) throw new Error(`CSV-Header fehlt Spalte: ${k}`);
-
-    const parseKas = (v: string) => v.trim() as Kasus;
-    const parseNum = (v: string) => v.trim() as Numerus;
-
+    for (const [k, v] of Object.entries(idx))
+        if (v === -1)
+            throw new Error(`CSV-Header fehlt Spalte: ${k}`);
+    const parseKas = (v) => v.trim();
+    const parseNum = (v) => v.trim();
     return csv.slice(1).map(r => ({
         deklination: r[idx.Deklination].trim(),
         typ: r[idx.Typ].trim(),
-        genus: r[idx.Genus].trim() as "f" | "m" | "n",
+        genus: r[idx.Genus].trim(),
         kasus: parseKas(r[idx.Kasus]),
         numerus: parseNum(r[idx.Numerus]),
         endung: r[idx.Endung].trim(),
     }));
 }
-
 // ...
-function renderEndungsTabelle(title: string, tbl: GrEndTbl): HTMLDivElement {
+function renderEndungsTabelle(title, tbl) {
     const card = document.createElement("div");
     card.className = "card";
-
     const h2 = document.createElement("h2");
     h2.textContent = title;
-
     const table = document.createElement("table");
     table.className = "endings-table"; // <— wichtig für globalen Hover
     // Kopf
@@ -119,87 +102,82 @@ function renderEndungsTabelle(title: string, tbl: GrEndTbl): HTMLDivElement {
     const tbody = document.createElement("tbody");
     for (const k of KASUS_DE_ORDER) {
         const tr = document.createElement("tr");
-        const th = document.createElement("th"); th.textContent = k; tr.appendChild(th);
-        const tdSg = document.createElement("td"); tdSg.textContent = tbl[k]["Sg"] || "—";
-        const tdPl = document.createElement("td"); tdPl.textContent = tbl[k]["Pl"] || "—";
-        tr.appendChild(tdSg); tr.appendChild(tdPl);
+        const th = document.createElement("th");
+        th.textContent = k;
+        tr.appendChild(th);
+        const tdSg = document.createElement("td");
+        tdSg.textContent = tbl[k]["Sg"] || "—";
+        const tdPl = document.createElement("td");
+        tdPl.textContent = tbl[k]["Pl"] || "—";
+        tr.appendChild(tdSg);
+        tr.appendChild(tdPl);
         tbody.appendChild(tr);
     }
     table.appendChild(thead);
     table.appendChild(tbody);
-
     card.appendChild(h2);
     card.appendChild(table);
     return card;
 }
-
-
 (async () => {
-    const root = document.getElementById("tables-root")!;
+    const root = document.getElementById("tables-root");
     try {
         const rows = await ladeGrEndungen();
         const endIdx = buildGrEndungenIndex(rows);
-
         root.innerHTML = "";
-
         const subs = await ladeGrSubstantive();
-
-// a-Deklination
+        // a-Deklination
         const aTyps = ["1", "2", "3a", "3b"];
         for (const typ of aTyps) {
             const k = keyOfGr("a", typ, "f");
             const tbl = endIdx.get(k);
-            if (!tbl) continue;
+            if (!tbl)
+                continue;
             const card = document.createElement("div");
             card.style.display = "flex";
             card.style.gap = "2rem";
-
             // Tabelle mit Endungen
             const endingsCard = renderEndungsTabelle(`a-Deklination Typ ${typ} (f)`, tbl);
-
             // Beispiel auswählen
             const sub = subs.find(s => s.deklination === "a" && s.typ === typ && s.genus === "f");
             if (sub) {
                 let formen = bildeFormen(sub.stamm, tbl);
                 formen = fuegeArtikelHinzu(formen, sub.genus);
                 const beispielCard = renderBeispielTabelle(sub, formen);
-
                 card.appendChild(endingsCard);
                 card.appendChild(beispielCard);
-            } else {
+            }
+            else {
                 card.appendChild(endingsCard);
             }
-
             root.appendChild(card);
         }
-
-// o-Deklination
-        for (const genus of ["m", "n"] as const) {
+        // o-Deklination
+        for (const genus of ["m", "n"]) {
             const k = keyOfGr("o", "-", genus);
             const tbl = endIdx.get(k);
-            if (!tbl) continue;
+            if (!tbl)
+                continue;
             const card = document.createElement("div");
             card.style.display = "flex";
             card.style.gap = "2rem";
-
             const endingsCard = renderEndungsTabelle(`o-Deklination (${genus})`, tbl);
             const sub = subs.find(s => s.deklination === "o" && s.genus === genus);
             if (sub) {
                 let formen = bildeFormen(sub.stamm, tbl);
                 formen = fuegeArtikelHinzu(formen, sub.genus);
                 const beispielCard = renderBeispielTabelle(sub, formen);
-
                 card.appendChild(endingsCard);
                 card.appendChild(beispielCard);
-            } else {
+            }
+            else {
                 card.appendChild(endingsCard);
             }
-
             root.appendChild(card);
         }
-
-    } catch (e) {
+    }
+    catch (e) {
         console.error(e);
-        root.textContent = `Fehler beim Laden: ${(e as Error).message}`;
+        root.textContent = `Fehler beim Laden: ${e.message}`;
     }
 })();

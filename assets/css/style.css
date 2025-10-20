@@ -167,6 +167,19 @@ td.match-hover {
     background: #fff3b0; /* sanftes Gelb */
 }
 
+.card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    padding: 1rem 1.5rem;
+}
+
+.example-card table td {
+    font-weight: 500;
+}
+
+
+
 /* ====== Feedback (Quiz) ====== */
 .ok  { color: #1b5e20; }
 .err { color: #b71c1c; }
