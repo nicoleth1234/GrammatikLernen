@@ -1,0 +1,13 @@
+Lemma,Tempus,Modus,Diathese,Person,Numerus,Form
+sum,Praesens,Indikativ,Aktiv,1,Sg,sum
+sum,Praesens,Indikativ,Aktiv,2,Sg,es
+sum,Praesens,Indikativ,Aktiv,3,Sg,est
+sum,Praesens,Indikativ,Aktiv,1,Pl,sumus
+sum,Praesens,Indikativ,Aktiv,2,Pl,estis
+sum,Praesens,Indikativ,Aktiv,3,Pl,sunt
+possum,Praesens,Indikativ,Aktiv,1,Sg,possum
+possum,Praesens,Indikativ,Aktiv,2,Sg,potes
+possum,Praesens,Indikativ,Aktiv,3,Sg,potest
+possum,Praesens,Indikativ,Aktiv,1,Pl,possumus
+possum,Praesens,Indikativ,Aktiv,2,Pl,potestis
+possum,Praesens,Indikativ,Aktiv,3,Pl,possunt

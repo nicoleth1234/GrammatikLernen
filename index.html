@@ -70,7 +70,10 @@
             { label: "Quiz", onClick: () => location.href = "quiz.html" },
         ]));
         sectionsRoot.appendChild(sectionCard("Adjektive deklinieren", "Kommt bald …"));
-        sectionsRoot.appendChild(sectionCard("Verben konjugieren", "In Arbeit …"));
+        sectionsRoot.appendChild(sectionCard("Verben konjugieren", null, [
+            { label: "Tabellen", onClick: () => location.href = "tables-la-verbs.html" },
+            { label: "Quiz", onClick: () => alert("Verb-Quiz kommt bald …") }
+        ]));
         sectionsRoot.appendChild(sectionCard("Hier könnte dein Vorschlag stehen 😉", "Schick mir deine Idee für das nächste Feature!"));
     }
 

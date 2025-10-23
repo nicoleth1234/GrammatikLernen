@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Latein – Verbtabellen</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .filters { display:flex; gap:.5rem; flex-wrap:wrap; align-items:end; margin-bottom:1rem; }
+        .filters .field { display:flex; flex-direction:column; gap:.25rem; }
+        .tables { display:grid; gap:1rem; }
+        .card h3 { margin:0 0 .5rem; }
+        .verb-table { width:100%; table-layout:fixed; }
+        .verb-table th, .verb-table td { text-align:center; }
+        .verb-table th:first-child { text-align:left; width:7rem; }
+        .btn-icon { background:#ef4444; color:#fff; border:none; border-radius:.5rem; padding:.35rem .6rem; cursor:pointer; }
+        .muted { color:#6b7280; }
+        input[type="search"] { padding:.45rem .6rem; border:1px solid #cbd5e1; border-radius:.5rem; }
+        select { padding:.45rem .6rem; border:1px solid #cbd5e1; border-radius:.5rem; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <a class="back" href="index.html">← Zurück</a>
+        <h1>Latein – Verbtabellen</h1>
+        <p class="muted">Wähle Verb, Modus, Tempus und Diathese. Du kannst mehrere Tabellen hinzufügen.</p>
+    </div>
+
+    <div class="filters">
+        <div class="field">
+            <label for="verbSearch">Suche</label>
+            <input id="verbSearch" type="search" placeholder="z. B. capere …">
+        </div>
+        <div class="field">
+            <label for="verbSelect">Verb</label>
+            <select id="verbSelect"></select>
+        </div>
+        <div class="field">
+            <label for="modus">Modus</label>
+            <select id="modus">
+                <option>Indikativ</option>
+                <option>Imperativ</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="tempus">Tempus</label>
+            <select id="tempus">
+                <option>Praesens</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="diathese">Diathese</label>
+            <select id="diathese">
+                <option>Aktiv</option>
+                <option>Passiv</option>
+            </select>
+        </div>
+        <div class="field">
+            <button id="addTable" class="btn">Tabelle hinzufügen</button>
+        </div>
+    </div>
+
+    <div id="tables" class="tables"></div>
+</div>
+
+<!-- Globaler Hover-Highlight -->
+<script type="module" src="dist/utils/hover-global.js"></script>
+<script type="module" src="dist/tablesLatinVerbs.js"></script>
+</body>
+</html>
