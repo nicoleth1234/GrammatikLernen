@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <base href="../../">
     <meta charset="UTF-8" />
     <title>Griechisch – Substantiv-Quiz</title>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -17,7 +18,11 @@
 <body>
 <div class="wrap">
     <div class="header">
-        <a class="back" href="quiz-gr-nouns-menu.html">← Zurück</a>
+        <a href="quiz-gr-nouns-menu.html" id="back">← Zurück</a>
+        <script type="module">
+            import { wireBackLinkToGreekNounsMenu } from "./dist/shared/nav.js";
+            wireBackLinkToGreekNounsMenu();
+        </script>
         <h1>Griechisch – Kasus erkennen</h1>
         <p id="modeLabel" class="muted"></p>
     </div>

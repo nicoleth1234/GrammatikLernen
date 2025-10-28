@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <base href="../../">
     <meta charset="UTF-8" />
     <title>Dekliniere-Quiz</title>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -8,7 +9,11 @@
 <body>
 <div class="wrap">
     <div class="header">
-        <a class="back" href="quiz.html">← Zurück</a>
+        <a href="quiz.html" id="back">← Zurück</a>
+        <script type="module">
+            import { wireBackLinkToQuiz } from "./dist/shared/nav.js";
+            wireBackLinkToQuiz("#back");
+        </script>
         <h1>Dekliniere-Quiz</h1>
     </div>
 

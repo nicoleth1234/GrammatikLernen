@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <base href="../../">
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Aktiv-Quiz</title>
-<!--    <style>-->
-<!--        body { font-family: system-ui, Arial, sans-serif; line-height: 1.5; }-->
-<!--        .wrap { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }-->
-<!--        .card { border: 1px solid #ddd; border-radius: .75rem; padding: 1rem; }-->
-<!--        .row { margin: .75rem 0; }-->
-<!--        .btn { padding: .6rem 1rem; border: 1px solid #ccc; background: #f7f7f7; cursor: pointer; border-radius: .5rem; }-->
-<!--        .btn + .btn { margin-left: .5rem; }-->
-<!--        .ok { color: #1b5e20; }-->
-<!--        .err { color: #b71c1c; }-->
-<!--        .muted { color: #666; font-size: .9rem; }-->
-<!--        input[type="text"] { padding: .5rem .6rem; width: 260px; }-->
-<!--    </style>-->
 </head>
 <body>
 <div class="wrap">
-    <a href="quiz.html">← Zurück</a>
+    <a href="quiz.html" id="back">← Zurück</a>
+    <script type="module">
+        import { wireBackLinkToQuiz } from "./dist/shared/nav.js";
+        wireBackLinkToQuiz("#back");
+    </script>
+
+
     <h1>Aktiv-Quiz</h1>
     <p class="muted">Gib die korrekte Endung ein. Längenzeichen (ā, ē, …) sind egal.</p>
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <base href="../../">
     <meta charset="UTF-8" />
     <title>Zuordnen – Auswahl</title>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -13,7 +14,11 @@
 <body>
 <div class="wrap">
     <div class="header">
-        <a class="back" href="quiz.html">← Zurück</a>
+        <a href="quiz.html" id="back">← Zurück</a>
+        <script type="module">
+            import { wireBackLinkToQuiz } from "./dist/shared/nav.js";
+            wireBackLinkToQuiz("#back");
+        </script>
         <h1>Zuordnungs-Quiz – Auswahl</h1>
     </div>
 
@@ -37,13 +42,19 @@
 </div>
 
 <script type="module">
+    import { goSiblingTo, wireBackLinkToQuiz } from "./dist/shared/nav.js";
+
+    // Back-Link robust machen (optional – falls noch nicht drin)
+    wireBackLinkToQuiz('.back'); // <a class="back" href="quiz.html">← Zurück</a>
+
     const btn = document.getElementById("btn-start");
-    btn.addEventListener("click", () => {
-        const voc = (document.querySelector('input[name="voc"]:checked')).value;
-        const mode = (document.querySelector('input[name="mode"]:checked')).value;
+    btn?.addEventListener("click", () => {
+        const voc = (document.querySelector('input[name="voc"]:checked'))?.value;
+        const mode = (document.querySelector('input[name="mode"]:checked') )?.value;
         const params = new URLSearchParams({ voc, mode });
-        window.location.href = `zuordnen-quiz.html?${params.toString()}`;
+        goSiblingTo("zuordnen-quiz.html", params.toString());
     });
 </script>
+
 </body>
 </html>

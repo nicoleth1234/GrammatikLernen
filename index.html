@@ -56,6 +56,13 @@
     </header>
 
     <main id="sections"></main>
+
+    <script type="module">
+        import { mountRouter } from "./dist/app/hashRouter.js";
+        mountRouter("app-frame", "/");
+    </script>
+
+
 </div>
 
 <script type="module">
@@ -66,12 +73,12 @@
     function renderLatin() {
         sectionsRoot.innerHTML = "";
         sectionsRoot.appendChild(sectionCard("Substantive deklinieren", null, [
-            { label: "Tabellen", onClick: () => location.href = "tables.html" },
-            { label: "Quiz", onClick: () => location.href = "quiz.html" },
+            { label: "Tabellen", onClick: () => location.href = "pages/latin/tables.html" },
+            { label: "Quiz", onClick: () => location.href = "pages/latin/quiz.html" },
         ]));
         sectionsRoot.appendChild(sectionCard("Adjektive deklinieren", "Kommt bald …"));
         sectionsRoot.appendChild(sectionCard("Verben konjugieren", null, [
-            { label: "Tabellen", onClick: () => location.href = "tables-la-verbs.html" },
+            { label: "Tabellen", onClick: () => location.href = "pages/latin/tables-la-verbs.html" },
             { label: "Quiz", onClick: () => alert("Verb-Quiz kommt bald …") }
         ]));
         sectionsRoot.appendChild(sectionCard("Hier könnte dein Vorschlag stehen 😉", "Schick mir deine Idee für das nächste Feature!"));
@@ -80,12 +87,12 @@
     function renderGreek() {
         sectionsRoot.innerHTML = "";
         sectionsRoot.appendChild(sectionCard("Artikel (Griechisch)", null, [
-            { label: "Tabellen", onClick: () => location.href = "tables-gr-articles.html" },
-            { label: "Quiz", onClick: () => location.href = "quiz-gr-articles.html" },
+            { label: "Tabellen", onClick: () => location.href = "pages/greek/tables-gr-articles.html" },
+            { label: "Quiz", onClick: () => location.href = "pages/greek/quiz-gr-articles.html" },
         ]));
         sectionsRoot.appendChild(sectionCard("Substantive deklinieren (Griechisch)", null, [
-            { label: "Tabellen", onClick: () => location.href = "tables-gr.html" },
-            { label: "Quiz", onClick: () => location.href = "quiz-gr-nouns-menu.html" },
+            { label: "Tabellen", onClick: () => location.href = "pages/latin/tables-gr.html" },
+            { label: "Quiz", onClick: () => location.href = "pages/greek/quiz-gr-nouns-menu.html" },
         ]));
         sectionsRoot.appendChild(sectionCard("Adjektive deklinieren (Griechisch)", "Kommt bald …"));
         sectionsRoot.appendChild(sectionCard("Verben konjugieren (Griechisch)", "Kommt bald …"));

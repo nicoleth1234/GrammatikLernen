@@ -81,13 +81,6 @@ el.add.addEventListener("click", () => {
     const diathese = el.diathese.value;
     renderTableCard(verb, modus, tempus, diathese);
 });
-// (async function init(){
-//     const [endungen, verben, irreg] = await Promise.all([ladeEndungen(), ladeVerben(), ladeIrreg()]);
-//     END_IDX = buildEndungsIndex(endungen);
-//     IRR_IDX = buildIrregIndex(irreg);
-//     VERBEN = verben;
-//     fillVerbSelect(VERBEN);
-// })();
 (async function init() {
     const [endungen, verben, irregRows, irregVerben] = await Promise.all([
         ladeEndungen(),

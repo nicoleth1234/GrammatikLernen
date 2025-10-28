@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <base href="../../">
     <meta charset="UTF-8" />
     <title>Griechisch – Substantiv-Quize</title>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -23,13 +24,34 @@
             <h2>Kasus erkennen</h2>
             <p class="muted">Ein dekliniertes Substantiv (mit/ohne Artikel) wird gezeigt; du wählst den/die passenden Kasus.</p>
             <div class="btn-row">
-                <button class="btn" onclick="location.href='quiz-gr-nouns.html?mode=normal'">Normal</button>
-                <button class="btn" onclick="location.href='quiz-gr-nouns.html?mode=hard'">Hard</button>
+                <button class="btn" id="btn-normal">Normal</button>
+                <button class="btn" id="btn-hard">Hard</button>
             </div>
+
         </div>
 
         <!-- Platz für weitere Quize später -->
     </div>
 </div>
+<script type="module">
+    import { goSiblingTo, wireBackLinkToQuiz } from "./dist/shared/nav.js"; // ggf. ../../dist/...
+
+    // (Optional) „Zurück“-Link robust machen, falls er zu quiz.html zeigen soll:
+    // wireBackLinkToQuiz('.back');
+
+    const normalBtn = document.getElementById("btn-normal");
+    const hardBtn   = document.getElementById("btn-hard");
+
+    normalBtn?.addEventListener("click", () => {
+        const qs = new URLSearchParams({ mode: "normal" }).toString();
+        goSiblingTo("quiz-gr-nouns.html", qs);
+    });
+
+    hardBtn?.addEventListener("click", () => {
+        const qs = new URLSearchParams({ mode: "hard" }).toString();
+        goSiblingTo("quiz-gr-nouns.html", qs);
+    });
+</script>
+
 </body>
 </html>
