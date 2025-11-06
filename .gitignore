@@ -2,6 +2,8 @@
 .idea/
 .ideo/
 
+*.iml
+
 # Node.js / npm
 node_modules/
 package-lock.json

@@ -22,6 +22,14 @@ const el = {
     tables: document.getElementById("tables") as HTMLDivElement,
 };
 
+const tSel = el.tempus; // HTMLSelectElement
+tSel.innerHTML = [
+    "Praesens",
+    "Imperfekt",
+    "Perfekt",
+    "Plusquamperfekt",
+].map(t => `<option value="${t}">${t}</option>`).join("");
+
 let VERBEN: VerbRow[] = [];
 let END_IDX: ReturnType<typeof buildEndungsIndex>;
 let IRR_IDX: ReturnType<typeof buildIrregIndex>;

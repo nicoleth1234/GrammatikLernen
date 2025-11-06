@@ -1,7 +1,7 @@
 import { ladeCsvDatei } from "./csv-loader.js";
 
 export type Konjugation = "1" | "2" | "3" | "3i" | "4" | "irr";
-export type Tempus = "Praesens"; // später erweiterbar
+export type Tempus = "Praesens" | "Imperfekt" | "Perfekt" | "Plusquamperfekt"; // später erweiterbar
 export type Modus = "Indikativ" | "Imperativ";
 export type Diathese = "Aktiv" | "Passiv";
 export type Person = "1" | "2" | "3";

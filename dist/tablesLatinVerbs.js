@@ -9,6 +9,13 @@ const el = {
     add: document.getElementById("addTable"),
     tables: document.getElementById("tables"),
 };
+const tSel = el.tempus; // HTMLSelectElement
+tSel.innerHTML = [
+    "Praesens",
+    "Imperfekt",
+    "Perfekt",
+    "Plusquamperfekt",
+].map(t => `<option value="${t}">${t}</option>`).join("");
 let VERBEN = [];
 let END_IDX;
 let IRR_IDX;

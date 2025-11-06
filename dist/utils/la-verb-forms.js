@@ -15,6 +15,14 @@ export function buildIrregIndex(rows) {
 }
 // deklinationen/src/utils/la-verb-forms.ts
 const VOWELS = new Set(["a", "e", "i", "o", "u"]);
+// Hilfsfunktion für den Stamm je Tempus
+function stemFor(verb, tempus) {
+    if (tempus === "Perfekt" || tempus === "Plusquamperfekt") {
+        return verb.perfektstamm; // z. B. amav-, monu-, rex-, cep-, audiv-
+    }
+    // Praesens, Imperfekt, (später: Futur I) → Präsensstamm
+    return verb.praesensstamm;
+}
 function joinStemAndEnding(verb, end, tempus, modus, diathese, person, numerus) {
     let stem = verb.praesensstamm || "";
     if (!end)
@@ -59,9 +67,22 @@ export function buildForms(verb, endIdx, irrIdx, tempus, modus, diathese) {
                 continue;
             }
             // 2) regulär: Präsensstamm + Endung
+            // const end = endIdx.get(verb.konj, tempus, modus, diathese, p, n);
+            // const stem = verb.praesensstamm;
+            // table[p][n] = end ? joinStemAndEnding(verb, end, tempus, modus, diathese, p, n) : "—";
             const end = endIdx.get(verb.konj, tempus, modus, diathese, p, n);
-            const stem = verb.praesensstamm;
-            table[p][n] = end ? joinStemAndEnding(verb, end, tempus, modus, diathese, p, n) : "—";
+            const stem = stemFor(verb, tempus);
+            if (!end) {
+                table[p][n] = "—";
+            }
+            else if (tempus === "Perfekt" || tempus === "Plusquamperfekt") {
+                // Perfekt-System: stumpf konkatenieren, keine a/o-Korrektur nötig
+                table[p][n] = stem + end;
+            }
+            else {
+                // Präsens-System (Praesens, Imperfekt): mit Join-Helper (verhindert z. B. vide+eo → video)
+                table[p][n] = joinStemAndEnding(verb, end, tempus, modus, diathese, p, n);
+            }
         }
     }
     return table;
