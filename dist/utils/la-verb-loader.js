@@ -13,14 +13,13 @@ const IRREG_INFINITIV = {
 export async function ladeIrregAlsVerben() {
     var _a;
     const irregs = await ladeIrreg();
-    const lemmas = new Set();
-    for (const r of irregs)
-        lemmas.add(r.lemma);
+    // const lemmas = new Set<string>();
+    // for (const r of irregs) lemmas.add(r.lemma);
     const rows = [];
-    for (const lemma of lemmas) {
+    for (const verb of irregs) {
         rows.push({
-            lemma,
-            infinitiv: (_a = IRREG_INFINITIV[lemma]) !== null && _a !== void 0 ? _a : "", // wenn bekannt anzeigen
+            lemma: verb.lemma,
+            infinitiv: (_a = verb.infinitiv) !== null && _a !== void 0 ? _a : "", // wenn bekannt anzeigen
             konj: "irr",
             praesensstamm: "", // ungenutzt bei irr.
             perfektstamm: "", // ungenutzt bei irr.
@@ -68,12 +67,13 @@ export async function ladeIrreg() {
     const h = rows[0];
     const I = (k) => h.indexOf(k);
     return rows.slice(1).map(r => ({
-        lemma: r[I("Lemma")].trim(),
-        tempus: r[I("Tempus")].trim(),
-        modus: r[I("Modus")].trim(),
-        diathese: r[I("Diathese")].trim(),
-        person: r[I("Person")].trim(),
-        numerus: r[I("Numerus")].trim(),
-        form: r[I("Form")].trim(),
+        infinitiv: r[I("infinitiv")].trim(),
+        lemma: r[I("lemma")].trim(),
+        tempus: r[I("tempus")].trim(),
+        modus: r[I("modus")].trim(),
+        diathese: r[I("diathese")].trim(),
+        person: r[I("person")].trim(),
+        numerus: r[I("numerus")].trim(),
+        form: r[I("form")].trim(),
     }));
 }

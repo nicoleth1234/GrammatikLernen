@@ -6,12 +6,31 @@ export function buildEndungsIndex(rows) {
         map.set(key(r.konj, r.tempus, r.modus, r.diathese, r.person, r.numerus), r.endung);
     return { get: (k, t, m, d, p, n) => { var _a; return (_a = map.get(key(k, t, m, d, p, n))) !== null && _a !== void 0 ? _a : ""; } };
 }
+function normKey(s) {
+    return s.trim().toLowerCase();
+}
+// NEU: der Irreg-Index wird per Infinitiv aufgebaut
 export function buildIrregIndex(rows) {
-    const key = (lemma, t, m, d, p, n) => `${lemma}|${t}|${m}|${d}|${p}|${n}`;
-    const map = new Map();
-    for (const r of rows)
-        map.set(key(r.lemma, r.tempus, r.modus, r.diathese, r.person, r.numerus), r.form);
-    return { get: (lemma, t, m, d, p, n) => map.get(key(lemma, t, m, d, p, n)) };
+    const idx = new Map();
+    // key1: infinitiv (normalisiert)
+    // key2: `${tempus}|${modus}|${diathese}|${person}|${numerus}` → form
+    for (const r of rows) {
+        const vkey = normKey(r.infinitiv || r.lemma);
+        if (!vkey)
+            continue;
+        const fkey = `${r.tempus}|${r.modus}|${r.diathese}|${r.person}|${r.numerus}`;
+        if (!idx.has(vkey))
+            idx.set(vkey, new Map());
+        idx.get(vkey).set(fkey, r.form);
+    }
+    return {
+        get(verb, tempus, modus, diathese, p, n) {
+            var _a;
+            const vkey = normKey(verb.infinitiv || verb.lemma);
+            const fkey = `${tempus}|${modus}|${diathese}|${p}|${n}`;
+            return ((_a = idx.get(vkey)) === null || _a === void 0 ? void 0 : _a.get(fkey)) || null;
+        }
+    };
 }
 // deklinationen/src/utils/la-verb-forms.ts
 const VOWELS = new Set(["a", "e", "i", "o", "u"]);
@@ -61,7 +80,7 @@ export function buildForms(verb, endIdx, irrIdx, tempus, modus, diathese) {
     for (const p of persons) {
         for (const n of numeri) {
             // 1) Irreg override
-            const irr = irrIdx.get(verb.lemma, tempus, modus, diathese, p, n);
+            const irr = irrIdx.get(verb, tempus, modus, diathese, p, n);
             if (irr) {
                 table[p][n] = irr;
                 continue;

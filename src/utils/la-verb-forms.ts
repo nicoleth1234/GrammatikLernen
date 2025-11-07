@@ -11,12 +11,30 @@ export function buildEndungsIndex(rows: EndungsRow[]) {
     return { get: (k: Konjugation, t: Tempus, m: Modus, d: Diathese, p: Person, n: Numerus) => map.get(key(k,t,m,d,p,n)) ?? "" };
 }
 
+function normKey(s: string): string {
+    return s.trim().toLowerCase();
+}
+
+// NEU: der Irreg-Index wird per Infinitiv aufgebaut
 export function buildIrregIndex(rows: IrregRow[]) {
-    const key = (lemma: string, t: Tempus, m: Modus, d: Diathese, p: Person, n: Numerus) =>
-        `${lemma}|${t}|${m}|${d}|${p}|${n}`;
-    const map = new Map<string, string>();
-    for (const r of rows) map.set(key(r.lemma, r.tempus, r.modus, r.diathese, r.person, r.numerus), r.form);
-    return { get: (lemma: string, t: Tempus, m: Modus, d: Diathese, p: Person, n: Numerus) => map.get(key(lemma,t,m,d,p,n)) };
+    const idx = new Map<string, Map<string, string>>();
+    // key1: infinitiv (normalisiert)
+    // key2: `${tempus}|${modus}|${diathese}|${person}|${numerus}` → form
+
+    for (const r of rows) {
+        const vkey = normKey(r.infinitiv || r.lemma);
+        if (!vkey) continue;
+        const fkey = `${r.tempus}|${r.modus}|${r.diathese}|${r.person}|${r.numerus}`;
+        if (!idx.has(vkey)) idx.set(vkey, new Map());
+        idx.get(vkey)!.set(fkey, r.form);
+    }
+    return {
+        get(verb: VerbRow, tempus: Tempus, modus: Modus, diathese: Diathese, p: Person, n: Numerus) {
+            const vkey = normKey(verb.infinitiv || verb.lemma);
+            const fkey = `${tempus}|${modus}|${diathese}|${p}|${n}`;
+            return idx.get(vkey)?.get(fkey) || null;
+        }
+    };
 }
 
 // deklinationen/src/utils/la-verb-forms.ts
@@ -95,7 +113,7 @@ export function buildForms(
     for (const p of persons) {
         for (const n of numeri) {
             // 1) Irreg override
-            const irr = irrIdx.get(verb.lemma, tempus, modus, diathese, p, n);
+            const irr = irrIdx.get(verb, tempus, modus, diathese, p, n);
             if (irr) { table[p][n] = irr; continue; }
 
             // 2) regulär: Präsensstamm + Endung

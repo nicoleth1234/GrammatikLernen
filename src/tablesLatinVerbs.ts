@@ -125,7 +125,17 @@ el.add.addEventListener("click", () => {
 
     // merge ohne Duplikate (falls Lemma schon regulär vorhanden ist)
     const known = new Set(verben.map(v => v.lemma));
-    const merged: VerbRow[] = verben.concat(irregVerben.filter(v => !known.has(v.lemma)));
+    const irregFiltered = irregVerben.filter((item => {
+        const seen = new Set<string>();
+        return (currentItem: VerbRow) => {
+            if (seen.has(currentItem.infinitiv)) {
+                return false;
+            }
+            seen.add(currentItem.infinitiv);
+            return true;
+        };
+    })());
+    const merged: VerbRow[] = verben.concat(irregFiltered.filter(v => !known.has(v.lemma)));
 
     VERBEN = merged;
     fillVerbSelect(VERBEN);

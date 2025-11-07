@@ -28,6 +28,7 @@ export type VerbRow = {
 };
 
 export type IrregRow = {
+    infinitiv: string;
     lemma: string;
     tempus: Tempus;
     modus: Modus;
@@ -51,14 +52,14 @@ const IRREG_INFINITIV: Record<string, string> = {
 // Aus den Irreg-Zeilen VerbRow-Einträge erzeugen
 export async function ladeIrregAlsVerben(): Promise<VerbRow[]> {
     const irregs = await ladeIrreg();
-    const lemmas = new Set<string>();
-    for (const r of irregs) lemmas.add(r.lemma);
+    // const lemmas = new Set<string>();
+    // for (const r of irregs) lemmas.add(r.lemma);
 
     const rows: VerbRow[] = [];
-    for (const lemma of lemmas) {
+    for (const verb of irregs) {
         rows.push({
-            lemma,
-            infinitiv: IRREG_INFINITIV[lemma] ?? "", // wenn bekannt anzeigen
+            lemma: verb.lemma,
+            infinitiv: verb.infinitiv ?? "", // wenn bekannt anzeigen
             konj: "irr",
             praesensstamm: "",   // ungenutzt bei irr.
             perfektstamm: "",    // ungenutzt bei irr.
@@ -106,12 +107,13 @@ export async function ladeIrreg(): Promise<IrregRow[]> {
     const h = rows[0];
     const I = (k: string) => h.indexOf(k);
     return rows.slice(1).map(r => ({
-        lemma: r[I("Lemma")].trim(),
-        tempus: r[I("Tempus")].trim() as Tempus,
-        modus: r[I("Modus")].trim() as Modus,
-        diathese: r[I("Diathese")].trim() as Diathese,
-        person: r[I("Person")].trim() as Person,
-        numerus: r[I("Numerus")].trim() as Numerus,
-        form: r[I("Form")].trim(),
+        infinitiv: r[I("infinitiv")].trim(),
+        lemma: r[I("lemma")].trim(),
+        tempus: r[I("tempus")].trim() as Tempus,
+        modus: r[I("modus")].trim() as Modus,
+        diathese: r[I("diathese")].trim() as Diathese,
+        person: r[I("person")].trim() as Person,
+        numerus: r[I("numerus")].trim() as Numerus,
+        form: r[I("form")].trim(),
     }));
 }
