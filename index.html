@@ -77,13 +77,12 @@
         sectionsRoot.appendChild(sectionCard("Adjektive deklinieren", "Kommt bald …"));
         sectionsRoot.appendChild(sectionCard("Verben konjugieren", null, [
             { label: "Tabellen", onClick: () => location.href = "pages/latin/tables-la-verbs.html" },
-            // ✨ NEU: Dropdown für Verben-Quize
             {
                 label: "Quiz",
                 onClick: () => {
                     const choice = prompt("Wähle Quiz:\n1 – Bilden (einzeln)\n2 – Erkennen (einzeln)\n3 – Zuordnen\n4 – Bilden (Tabelle)");
                     if (choice === "1") location.href = "pages/latin/la-verben-quiz-bilden.html";
-                    else if (choice === "2") alert("Erkennen (einzeln) kommt bald …");
+                    else if (choice === "2") location.href = "pages/latin/la-verben-quiz-erkennen.html";
                     else if (choice === "3") alert("Zuordnen kommt bald …");
                     else if (choice === "4") alert("Bilden (Tabelle) kommt bald …");
                 }

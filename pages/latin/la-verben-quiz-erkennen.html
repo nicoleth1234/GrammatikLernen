@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Latein – Verben: Erkennen</title>
+    <base href="../../">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="index.html">← Zurück</a>
+    <h1>Latein – Verben: Erkennen (einzeln)</h1>
+
+    <div class="card" id="quiz">
+        <div class="row">
+            <div class="col">
+                <div class="muted">Gegebene Form</div>
+                <div id="prompt" class="big"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="inf">Infinitiv</label>
+            <input id="inf" type="text" autocomplete="off" placeholder="z. B. amare" />
+        </div>
+
+        <div class="row">
+            <label for="tempus">Tempus</label>
+            <select id="tempus"></select>
+            <label for="modus">Modus</label>
+            <select id="modus"></select>
+            <label for="diathese">Diathese</label>
+            <select id="diathese"></select>
+        </div>
+
+        <div class="row">
+            <label for="person">Person</label>
+            <select id="person"></select>
+            <label for="numerus">Numerus</label>
+            <select id="numerus"></select>
+        </div>
+
+        <div class="row">
+            <button id="btn-submit" class="btn">Antworten</button>
+            <button id="btn-show" class="btn">Lösung zeigen</button>
+            <button id="btn-next" class="btn">Nächste Aufgabe</button>
+            <span class="muted" style="margin-left:.75rem;">Fehler: <span id="errors">0</span></span>
+        </div>
+
+        <div class="row" id="feedback"></div>
+    </div>
+</div>
+
+<!-- Dein Build schreibt flach nach /dist -->
+<script type="module" src="dist/la-verben-quiz-erkennen.js"></script>
+</body>
+</html>
