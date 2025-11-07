@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Latein – Verben: Bilden</title>
+    <base href="../../">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="index.html">← Zurück</a>
+    <h1>Latein – Verben: Bilden (einzeln)</h1>
+
+    <div class="card" id="quiz">
+        <div class="row">
+            <strong>Verb:</strong> <span id="q-lemma" class="pill"></span>
+        </div>
+        <div class="row">
+            <strong>Angabe:</strong> <span id="q-spec" class="pill"></span>
+        </div>
+        <div class="row">
+            <label for="answer">Antwort:</label>
+            <input id="answer" type="text" autocomplete="off" />
+            <button id="btn-submit" class="btn">Antworten</button>
+            <button id="btn-hint" class="btn">Hinweis (Stamm)</button>
+            <button id="btn-show" class="btn">Lösung zeigen</button>
+            <span class="muted" style="margin-left:.75rem;">Fehler: <span id="errors">0</span></span>
+        </div>
+        <div class="row" id="feedback"></div>
+    </div>
+</div>
+
+<!-- Dein Build schreibt flach nach /dist -->
+<script type="module" src="dist/la-verben-quiz-bilden.js"></script>
+</body>
+</html>
