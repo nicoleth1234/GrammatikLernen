@@ -3,6 +3,7 @@ export var Deklinationen;
     Deklinationen["A"] = "a";
     Deklinationen["O"] = "o";
     Deklinationen["Dritte"] = "3";
+    Deklinationen["U"] = "u";
 })(Deklinationen || (Deklinationen = {}));
 export var Genus;
 (function (Genus) {

@@ -1,7 +1,8 @@
 export enum Deklinationen {
     A = "a",
     O = "o",
-    Dritte = "3"
+    Dritte = "3",
+    U="u"
 }
 
 export enum Genus {

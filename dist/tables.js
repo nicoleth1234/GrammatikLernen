@@ -148,6 +148,7 @@ function attachHoverHighlight(table) {
             { title: "o-Deklination (n)", dekl: Deklinationen.O, genus: Genus.N, substFilter: s => s.dekl === Deklinationen.O && s.genus === Genus.N },
             { title: "3. Deklination (m) – Normalfall", dekl: Deklinationen.Dritte, genus: Genus.M, substFilter: s => s.dekl === Deklinationen.Dritte && s.genus === Genus.M },
             { title: "3. Deklination (n) – Normalfall", dekl: Deklinationen.Dritte, genus: Genus.N, substFilter: s => s.dekl === Deklinationen.Dritte && s.genus === Genus.N },
+            { title: "u-Deklination (m) – Normalfall", dekl: Deklinationen.U, genus: Genus.M, substFilter: s => s.dekl === Deklinationen.U && s.genus === Genus.M },
         ];
         root.innerHTML = "";
         for (const g of gruppen) {

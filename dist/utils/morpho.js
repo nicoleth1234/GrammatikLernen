@@ -12,14 +12,27 @@ export function bildeFormenDyn(s, endIdx) {
     if (!ends)
         throw new Error(`Keine Endungen gefunden für ${key}`);
     const tbl = cloneTbl(ends);
-    // Helper um alles auf Stamm+Endung zu setzen
+    // Makron-sicheres Join: ersetzt Stamm-u mit u/ū-beginnender Endung
+    const joinStemAndEnd = (stem, end) => {
+        // 1) u + ibus → (u fällt weg): cornu + ibus → cornibus, usu + ibus → usibus
+        if (stem.endsWith("u") && end.startsWith("ibus")) {
+            return stem.slice(0, -1) + end;
+        }
+        // 2) u + u/ū → Doppel-u vermeiden, Makron der Endung bewahren
+        if (stem.endsWith("u") && (end.startsWith("u") || end.startsWith("ū"))) {
+            return stem.slice(0, -1) + end;
+        }
+        // 3) Standard
+        return stem + end;
+    };
+    // Helper: füllt alles mit Join (verhindert uu, bewahrt ū)
     const fillStemPlusEnd = (skip = []) => {
         const skipSet = new Set(skip.map(([k, n]) => `${k}|${n}`));
         for (const k of KASUS_ORDER) {
             for (const n of [Numerus.Sg, Numerus.Pl]) {
                 if (skipSet.has(`${k}|${n}`))
                     continue;
-                tbl[k][n] = s.stamm + ends[k][n];
+                tbl[k][n] = joinStemAndEnd(s.stamm, ends[k][n]);
             }
         }
     };
@@ -74,6 +87,12 @@ export function bildeFormenDyn(s, endIdx) {
             [Kasus.Akk, Numerus.Sg],
             [Kasus.Vok, Numerus.Sg],
         ]);
+        return tbl;
+    }
+    if (s.dekl === Deklinationen.U && (s.genus === Genus.M || s.genus === Genus.N)) {
+        // u-Dekl. ist weitgehend regulär; Vok Sg = Nom Sg, aber das liefert die CSV bereits.
+        // Wichtig ist nur das u/u-Join (fructu + uī → fructuī, cornu + ua → cornua).
+        fillStemPlusEnd();
         return tbl;
     }
     throw new Error(`Nicht unterstützt: ${s.dekl}/${s.genus}`);
