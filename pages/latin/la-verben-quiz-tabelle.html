@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Latein – Verben: Bilden (Tabelle)</title>
+    <base href="../../">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Kleine Hilfsstyles, nicht invasiv */
+        table.konjtbl { border-collapse: collapse; width: 100%; max-width: 720px; }
+        .konjtbl th, .konjtbl td { border: 1px solid #ddd; padding: .5rem; }
+        .konjtbl th { background: #f7f7f7; text-align: left; }
+        .ok { background: #e7f8ec; }
+        .bad { background: #fde8e8; }
+        .muted { color: #666; font-size: .9rem; }
+        .big { font-size: 1.2rem; font-weight: 600; }
+        .row.gap > * { margin-right: .5rem; }
+        .row.gap > *:last-child { margin-right: 0; }
+        input.formcell { width: 100%; box-sizing: border-box; }
+        .controls { display:flex; gap:.5rem; flex-wrap:wrap; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="index.html">← Zurück</a>
+    <h1>Latein – Verben: Bilden (Tabelle)</h1>
+
+    <div class="card" id="quiz">
+        <div class="row">
+            <div class="col">
+                <div class="muted">Verb (Infinitiv)</div>
+                <div id="infinitiv" class="big"></div>
+            </div>
+        </div>
+
+        <div class="row gap">
+            <span class="muted">Tempus: <strong id="lab-tempus"></strong></span>
+            <span class="muted">Modus: <strong id="lab-modus"></strong></span>
+            <span class="muted">Diathese: <strong id="lab-diathese"></strong></span>
+            <span class="muted">Fehler: <strong id="errors">0</strong></span>
+        </div>
+
+        <div class="row">
+            <div id="grid"></div>
+        </div>
+
+        <div class="row controls">
+            <button id="btn-check" class="btn">Überprüfen</button>
+            <button id="btn-new" class="btn">Neues Verb</button>
+            <button id="btn-solve" class="btn">Auflösen</button>
+            <button id="btn-hint" class="btn">Hinweis (Stamm)</button>
+            <span id="hint" class="muted"></span>
+        </div>
+
+        <div class="row" id="feedback"></div>
+    </div>
+</div>
+
+<!-- Dein Build schreibt nach /dist -->
+<script type="module" src="dist/la-verben-quiz-tabelle.js"></script>
+</body>
+</html>
