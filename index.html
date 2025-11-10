@@ -102,7 +102,26 @@
             { label: "Quiz", onClick: () => location.href = "pages/greek/quiz-gr-nouns-menu.html" },
         ]));
         sectionsRoot.appendChild(sectionCard("Adjektive deklinieren (Griechisch)", "Kommt bald …"));
-        sectionsRoot.appendChild(sectionCard("Verben konjugieren (Griechisch)", "Kommt bald …"));
+        sectionsRoot.appendChild(sectionCard("Verben konjugieren", null, [
+            {
+                label: "Tabellen",
+                onClick: () => {
+                    const choice = prompt("Wähle eine Tabelle:\n1 – Endungen\n2 – Verben");
+                    if (choice === "1") location.href = "pages/greek/gr-verben-endungen.html";
+                    else if (choice === "2") location.href = "pages/greek/gr-verben-tabellen.html";
+                }
+            },
+            {
+                label: "Quiz",
+                onClick: () => {
+                    const choice = prompt("Kommt bald");
+                    if (choice === "1") location.href = "pages/latin/la-verben-quiz-bilden.html";
+                    else if (choice === "2") location.href = "pages/latin/la-verben-quiz-erkennen.html";
+                    else if (choice === "3") location.href = "pages/latin/la-verben-quiz-zuordnen.html";
+                    else if (choice === "4") location.href = "pages/latin/la-verben-quiz-tabelle.html";
+                }
+            }
+        ]));
         sectionsRoot.appendChild(sectionCard("Hier könnte dein Vorschlag stehen 😉", "Kommt bald …"));
     }
 
