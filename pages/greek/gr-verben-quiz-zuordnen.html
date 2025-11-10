@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Griechisch – Verben: Zuordnen</title>
+    <base href="../../">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        table.konjtbl { border-collapse: collapse; width: 100%; max-width: 820px; }
+        .konjtbl th, .konjtbl td { border: 1px solid #ddd; padding: .5rem; vertical-align: top; }
+        .konjtbl th { background: #f7f7f7; text-align: left; white-space: nowrap; }
+        .dropcell { min-height: 2.2rem; }
+        .ok { background: #e7f8ec; }
+        .bad { background: #fde8e8; }
+        .muted { color: #666; font-size: .9rem; }
+        .big { font-size: 1.2rem; font-weight: 600; }
+        .controls { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; }
+        #pool { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: .5rem; align-content: start; }
+        .chip {
+            border: 1px solid #ccc; border-radius: .5rem; padding: .4rem .6rem; cursor: grab; user-select: none; background: #fff;
+            text-align: center;
+        }
+        .chip:active { cursor: grabbing; }
+        .droptarget { outline: 2px dashed #bbb; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="index.html">← Zurück</a>
+    <h1>Griechisch – Verben: Zuordnen</h1>
+
+    <div class="card" id="quiz">
+        <div class="row">
+            <div class="col">
+                <div class="muted">Verb (Lemma)</div>
+                <div id="lemma" class="big"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <span class="muted">Tempus: <strong id="lab-tempus"></strong></span>
+            <span class="muted" style="margin-left:1rem;">Modus: <strong id="lab-modus"></strong></span>
+            <span class="muted" style="margin-left:1rem;">Diathese: <strong id="lab-diathese"></strong></span>
+            <span class="muted" style="margin-left:1rem;">Fehler: <strong id="errors">0</strong></span>
+        </div>
+
+        <div class="row">
+            <div id="grid" style="flex: 2 1 60%; margin-right:1rem;"></div>
+            <div style="flex: 1 1 40%;">
+                <div class="muted" style="margin-bottom:.25rem;">Formen zum Ziehen</div>
+                <div id="pool"></div>
+            </div>
+        </div>
+
+        <div class="row controls">
+            <button id="btn-new" class="btn">Neue Aufgabe</button>
+            <button id="btn-solve" class="btn">Auflösen</button>
+            <span id="hint" class="muted"></span>
+        </div>
+
+        <div class="row" id="feedback"></div>
+    </div>
+</div>
+
+<!-- Dein Build schreibt nach /dist -->
+<script type="module" src="dist/gr-verben-quiz-zuordnen.js"></script>
+<!-- (optional) globaler Hover, wenn du Tooltips brauchst -->
+<!-- <script type="module" src="dist/utils/hover-global.js"></script> -->
+</body>
+</html>

@@ -25,6 +25,7 @@ function renderTable(host, tbl, modus) {
     const selModus = $("sel-modus");
     const selDiath = $("sel-diathese");
     const hostTbl = $("tbl");
+    hostTbl.className = "endings-table";
     // Dropdowns – Verb nur Lemma
     optionize(selVerb, verbs.map(v => v.lemma));
     optionize(selTempus, TEMPI);

@@ -45,7 +45,7 @@ function renderTable(
         `<tr><th>${p}. Person</th>${usedNumeri.map(n => `<td>${tbl[p][n]}</td>`).join("")}</tr>`
     ).join("");
 
-    host.innerHTML = `<table class="konjtbl">${thead}<tbody>${rows}</tbody></table>`;
+    host.innerHTML = `<table class="konjtbl endings-table">${thead}<tbody>${rows}</tbody></table>`;
 }
 
 (async function init() {
